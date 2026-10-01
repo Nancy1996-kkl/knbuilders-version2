@@ -2,7 +2,7 @@
 // Replaces a hand-maintained public/sitemap.xml so URLs, priorities and
 // <lastmod> stay in sync with the real content instead of drifting.
 //
-// Blog posts use their true publish date (dateISO); evergreen pages use the
+// Blog posts use their last-updated date (updatedISO, else dateISO); evergreen pages use the
 // build date. Service and project imagery is declared with the image namespace
 // so Google Images can index it — worth doing for a construction firm, where
 // the work is inherently visual and image search is a real discovery path.
@@ -20,7 +20,7 @@ const today = new Date().toISOString().slice(0, 10)
 
 // Most recent post date — the blog index is only as fresh as its newest entry.
 const latestPost = POSTS
-  .map((p) => p.dateISO)
+  .map((p) => p.updatedISO || p.dateISO)
   .sort()
   .reverse()[0] || today
 
@@ -64,7 +64,7 @@ const urls = [
     loc: `/blog/${p.slug}.html`,
     changefreq: 'yearly', // guides are evergreen; lastmod is the real signal
     priority: '0.7',
-    lastmod: p.dateISO,
+    lastmod: p.updatedISO || p.dateISO,
     images: IMAGES[p.img] ? [{ url: IMAGES[p.img], title: p.title }] : [],
   })),
 

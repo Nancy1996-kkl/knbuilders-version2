@@ -1,5 +1,6 @@
 // Content model for KN Builders. Imagery uses Unsplash (royalty-free, no attribution).
 // Navigation + business NAP now live in src/site.js.
+import { POSTS_BY_DATE } from './content/posts.js'
 import technologyConstructionImage from './images/technology-modern-construction-bim-drones.jpg'
 import successfulConstructionImage from './images/essential-steps-successful-construction-project.jpg'
 import sitesafetyConstructionImage from './images/construction-site-safety-tips.jpg'
@@ -230,14 +231,11 @@ export const TESTIMONIALS = [
   { rating: '5.0', title: 'Quality You Can See', text: 'From the foundation to the finishing, the workmanship is excellent. Five years on, not a single complaint. Highly recommended.', name: 'Mohan Raj', role: 'Homeowner, Selaiyur', img: 'client4' },
 ]
 
-export const BLOGS = [
-  { slug: 'technology-modern-construction', tag: 'Construction Trends', date: 'June 2, 2026', readTime: '5 min', title: 'How Technology Is Revolutionizing Modern Construction', img: 'blog1', excerpt: 'From BIM to drones and on-site IoT, here is how digital tools are making builds faster, safer and more predictable.' },
-  { slug: 'successful-construction-project-steps', tag: 'Project Management', date: 'June 8, 2026', readTime: '6 min', title: '8 Essential Steps for a Successful Construction Project', img: 'blog2', excerpt: 'A clear, step-by-step framework that takes a project from first consultation all the way to a smooth handover.' },
-  { slug: 'site-safety-tips', tag: 'Project Management', date: 'June 11, 2026', readTime: '4 min', title: 'Site Safety Tips: Ensuring a Smooth Construction', img: 'blog3', excerpt: 'Practical safety practices that protect your workers, your timeline and your budget on every site.' },
-  { slug: 'cost-to-build-house-chennai', tag: 'Cost Guide', date: 'May 28, 2026', readTime: '7 min', title: 'What Does It Cost to Build a House in Chennai in 2026?', img: 'blog4', excerpt: 'A transparent breakdown of per-square-foot costs, materials and the factors that move your budget up or down.' },
-  { slug: 'vaastu-modern-homes', tag: 'Design', date: 'May 20, 2026', readTime: '5 min', title: 'Balancing Vaastu With Modern Home Design', img: 'blog5', excerpt: 'How to honour Vaastu principles without compromising on light, space and contemporary aesthetics.' },
-  { slug: 'choosing-a-builder-tambaram', tag: 'Buyer Guide', date: 'May 12, 2026', readTime: '6 min', title: 'How to Choose the Right Builder in Tambaram', img: 'blog6', excerpt: 'The questions to ask, the documents to check and the red flags to avoid before you sign a construction contract.' },
-]
+// Blog cards come straight from the full articles (src/content/posts.js), newest first,
+// so titles, excerpts and reading times can never drift from the article pages.
+export const BLOGS = POSTS_BY_DATE.map(({ slug, tag, date, readTime, title, img, excerpt }) => (
+  { slug, tag, date, readTime, title, img, excerpt }
+))
 
 // Every question carries the pages it belongs on. Home and Services used to
 // render the same FAQS.slice(0, 5), so a visitor moving between them met an

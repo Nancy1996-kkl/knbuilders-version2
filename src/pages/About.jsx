@@ -60,7 +60,7 @@ function Story() {
               </div>
             ))}
           </dl>
-          <h4 className="heading mt-8 text-base text-navy">What he brings to every project</h4>
+          <h4 className="heading mt-8 text-base text-navy">What she brings to every project</h4>
           <ul className="mt-3 grid gap-2 text-sm text-navy/75 sm:grid-cols-2">
             {FOUNDER_STRENGTHS.map((item, i) => (
               <Reveal as="li" key={item} delay={i * 70} className="flex items-center gap-2">

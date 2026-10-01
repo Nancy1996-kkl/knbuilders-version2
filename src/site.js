@@ -9,8 +9,8 @@ export const SITE = {
   phone: '+91 824 847 4364',
   phoneHref: 'tel:+918248474364',
   whatsapp: 'https://wa.me/918248474364',
-  email: 'architects.kn@gmail.com',
-  emailHref: 'mailto:architects.kn@gmail.com',
+  email: 'nancykkl96@gmail.com',
+  emailHref: 'mailto:nancykkl96@gmail.com',
   foundingYear: 2001,
   priceRange: '₹₹',
   address: {
@@ -25,9 +25,11 @@ export const SITE = {
   // Google Maps: share link for "directions" + embeddable URL for the iframe
   mapLink: 'https://maps.app.goo.gl/2F2G25cJ2s7HWSnh8',
   mapEmbed: 'https://maps.google.com/maps?q=12.9255225,80.0760131&z=16&output=embed',
-  // Lead delivery: paste your Web3Forms access key (free, no backend) from
-  // https://web3forms.com. Until set, forms fall back to a WhatsApp deep-link.
-  formAccessKey: '6aac9097-22f7-4e74-93ac-64f6125d2b52',
+  // Lead delivery (Google Apps Script, free — see google-apps-script/Code.gs).
+  // Every form submission is emailed to leadEmail, and the customer gets a
+  // "Our team will contact you shortly" confirmation. Paste the Web app /exec URL here:
+  leadEmail: 'nancykkl96@gmail.com',
+  leadScriptUrl: 'https://script.google.com/macros/s/AKfycbzaOIZ9gQZDo6qukTlYPTqBV4g_BaN-Iev9RVkOznmpQAw2M0C6ERpA0-XlEQ-Cvc7myg/exec',
   hours: [
     { days: 'Mon – Fri', time: '9:00 – 18:00' },
     { days: 'Saturday', time: '10:00 – 15:00' },

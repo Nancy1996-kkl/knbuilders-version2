@@ -9,6 +9,7 @@ import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { SITE, SERVICE_AREA_NAMES } from '../src/site.js'
 import { faqsFor } from '../src/data.js'
+import { getPost } from '../src/content/posts.js'
 
 const root = process.cwd()
 const dist = resolve(root, 'dist')
@@ -81,14 +82,15 @@ function syncNap(html) {
 // visible content as a structured-data error, so the block is regenerated here
 // from the same faqsFor() the page renders — the two can no longer disagree.
 //
-// Pages with no FAQPage block (or none of their own questions) are left alone;
-// the service- and blog-detail pages carry hand-written, page-specific FAQs
-// that are not part of the shared list.
+// Blog articles take their questions from the post itself (src/content/posts.js),
+// so editing an article's FAQs updates its schema too. Pages with no FAQPage
+// block (or none of their own questions) are left alone; the service-detail
+// pages carry hand-written, page-specific FAQs that are not part of the shared list.
 const FAQ_RE = /<script type="application\/ld\+json">\s*\{\s*"@context":\s*"https:\/\/schema\.org",\s*"@type":\s*"FAQPage"[\s\S]*?<\/script>/
 
 function syncFaqSchema(html, key) {
   if (!FAQ_RE.test(html)) return html
-  const items = faqsFor(key)
+  const items = key.startsWith('post:') ? (getPost(key.slice(5))?.faqs || []) : faqsFor(key)
   if (!items.length) return html
   const json = {
     '@context': 'https://schema.org',

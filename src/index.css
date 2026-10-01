@@ -36,6 +36,14 @@
   }
   .heading {
     @apply font-display font-extrabold leading-tight;
+    /* Avoid a single orphan word on the last line (e.g. "It." alone on tablets). */
+    text-wrap: balance;
+  }
+  .eyebrow-light {
+    @apply text-[#f7c9a3];
+  }
+  .eyebrow-light::before {
+    @apply bg-[#f7c9a3];
   }
 }
 
@@ -98,14 +106,14 @@
 
   .about-why-top > :first-child p {
     margin-top: 0.75rem;
-    font-size: 0.7rem;
-    line-height: 1.45;
+    font-size: 0.82rem;
+    line-height: 1.55;
   }
 
   .about-why-top > :first-child .btn-primary {
     margin-top: 1rem;
-    padding: 0.6rem 0.9rem;
-    font-size: 0.65rem;
+    padding: 0.65rem 1.1rem;
+    font-size: 0.78rem;
   }
 
   .about-why-hero-image {
@@ -174,14 +182,14 @@
 
   .about-why-top > :first-child p {
     margin-top: 0.75rem;
-    font-size: 0.7rem;
-    line-height: 1.45;
+    font-size: 0.82rem;
+    line-height: 1.55;
   }
 
   .about-why-top > :first-child .btn-primary {
     margin-top: 1rem;
-    padding: 0.6rem 0.9rem;
-    font-size: 0.65rem;
+    padding: 0.65rem 1.1rem;
+    font-size: 0.78rem;
   }
 
   .about-why-hero-image {
@@ -209,6 +217,17 @@
 
   .about-why-top > :first-child {
     padding: 1.5rem 1rem 0;
+  }
+
+  /* Phones: text stacks full width, so use normal reading sizes. */
+  .about-why-top > :first-child p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .about-why-top > :first-child .btn-primary {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
   }
 
   .about-why-hero-image {
@@ -893,5 +912,19 @@ section[id] {
   .success-pop,
   .quote-countdown {
     animation: none !important;
+  }
+}
+
+/* Tablet (768–1023px): 2-column grids that end on a single card leave a
+   lonely card beside an empty gap. Stretch that last card across the row. */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .md-fill-last > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+/* Same idea for grids that go 2-up from 640px. */
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .sm-fill-last > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 }

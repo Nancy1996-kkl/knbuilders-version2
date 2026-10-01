@@ -160,28 +160,28 @@ export function ServicesSection({ limit, detailed = false, showFeatures = detail
       <div className="container-px">
         <SectionHeading center eyebrow="Our Services" title="Services That Fit" accent="Your Needs" />
       </div>
-      <div className="container-px mt-10 grid gap-4 sm:mt-12 md:grid-cols-2 lg:grid-cols-3">
+      <div className="md-fill-last container-px mt-10 grid gap-4 sm:mt-12 md:grid-cols-2 lg:grid-cols-3">
         {items.map((s, i) => (
-          <Reveal key={s.slug} delay={(i % 3) * 90} className="group flex min-h-[250px] flex-col overflow-hidden rounded-2xl border border-transparent bg-white shadow-sm ring-1 ring-navy/5 transition hover:-translate-y-1 hover:border-orange/40 hover:shadow-xl sm:flex-row">
+          <Reveal key={s.slug} delay={(i % 3) * 90} className="group flex flex-col overflow-hidden rounded-2xl sm:min-h-[250px] border border-transparent bg-white shadow-sm ring-1 ring-navy/5 transition hover:-translate-y-1 hover:border-orange/40 hover:shadow-xl sm:flex-row">
             <a href={`/services/${s.slug}.html`} className="service-card-image block aspect-[4/3] w-full shrink-0 overflow-hidden sm:aspect-auto sm:h-auto sm:min-h-[250px] sm:w-[40%] lg:w-[42%]">
               <img src={IMAGES[s.image]} alt="" loading="lazy" className="block h-full w-full object-cover object-center transition duration-500 group-hover:scale-105" />
             </a>
-            <div className="flex min-h-[250px] min-w-0 flex-1 flex-col p-5 sm:w-[60%] sm:p-4 lg:w-[58%] lg:p-4">
+            <div className="flex min-w-0 flex-1 flex-col p-5 sm:min-h-[250px] sm:w-[60%] sm:p-5 lg:w-[58%] lg:p-4">
               <div className="flex items-start justify-between gap-3">
                 <h3 className="heading text-base leading-snug text-navy sm:text-[0.98rem]"><a href={`/services/${s.slug}.html`} className="transition hover:text-orange">{s.title}</a></h3>
                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-navy text-orange transition group-hover:bg-orange group-hover:text-white">
                   <Icon name={s.icon} className="h-4 w-4" />
                 </span>
               </div>
-              <p className="mt-3 text-xs leading-relaxed text-navy/70 sm:text-[0.72rem]">{detailed ? s.desc : s.summary}</p>
+              <p className="mt-3 text-sm leading-relaxed text-navy/70 lg:text-[0.8rem]">{detailed ? s.desc : s.summary}</p>
               {showFeatures && (
                 <ul className="mt-3 space-y-1.5">
                   {s.features.map((f) => (
-                    <li key={f} className="flex items-start gap-1.5 text-xs leading-snug text-navy/70 sm:text-[0.68rem]"><span className="mt-0.5 shrink-0 text-orange"><Icon name="check" className="h-3 w-3" /></span>{f}</li>
+                    <li key={f} className="flex items-start gap-1.5 text-xs leading-snug text-navy/70 lg:text-[0.75rem]"><span className="mt-0.5 shrink-0 text-orange"><Icon name="check" className="h-3 w-3" /></span>{f}</li>
                   ))}
                 </ul>
               )}
-              <a href={`/services/${s.slug}.html`} className="mt-auto inline-flex items-center gap-2 pt-4 text-xs font-semibold text-orange">
+              <a href={`/services/${s.slug}.html`} className="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-semibold text-orange lg:text-xs">
                 Learn more <Icon name="arrow" className="h-4 w-4" />
               </a>
             </div>
@@ -254,15 +254,15 @@ export function ProjectsShowcase({ limit = 3 }) {
       <div className="container-px">
         <SectionHeading center dark eyebrow="Recent Projects" title="Our" accent="Completed Projects" />
       </div>
-      <div className="container-px mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="container-px mt-12 grid gap-6 md:grid-cols-3 md:gap-4 lg:gap-6">
         {shown.map((p, i) => (
           <Reveal key={p.name} delay={(i % 3) * 80} className="group overflow-hidden rounded-2xl bg-navy-deep ring-1 ring-white/10 transition hover:-translate-y-1">
             <div className="relative overflow-hidden">
-              <img src={IMAGES[p.img]} alt={`${p.name} — ${p.tag} by KN Builders in ${p.location}`} loading="lazy" className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <img src={IMAGES[p.img]} alt={`${p.name} — ${p.tag} by KN Builders in ${p.location}`} loading="lazy" className="h-52 w-full object-cover transition duration-500 group-hover:scale-105 md:h-40 lg:h-52" />
               <span className="absolute left-3 top-3 rounded-full bg-orange px-3 py-1 text-xs font-medium text-white">{p.category}</span>
               <span className="absolute bottom-3 right-3 rounded-full bg-black/50 px-3 py-1 text-xs text-white">{p.year}</span>
             </div>
-            <div className="p-6">
+            <div className="p-6 md:p-4 lg:p-6">
               <h3 className="heading text-lg text-white">{p.name}</h3>
               <p className="mt-2 text-sm text-white/65">{p.desc}</p>
               <ul className="mt-4 space-y-1.5 text-sm text-white/70">
@@ -297,7 +297,7 @@ export function ProjectsGrid() {
             </button>
           ))}
         </div>
-        <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="md-fill-last mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {shown.map((p, i) => (
             <Reveal key={p.name} delay={(i % 3) * 80} className="project-card group overflow-hidden rounded-xl bg-white ring-1 ring-navy/10 transition hover:-translate-y-1 hover:shadow-lg">
               <div className="relative overflow-hidden">
@@ -531,7 +531,7 @@ export function TestimonialsSection({ limit }) {
       <div className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-cream/10 blur-3xl" aria-hidden />
 
       <div className="container-px relative">
-        <SectionHeading center dark eyebrow="Testimonials" title="Experience Shared by" accent="Our Clients" />
+        <SectionHeading center dark onOlive eyebrow="Testimonials" title="Experience Shared by" accent="Our Clients" />
       </div>
 
       {!hydrated ? (
@@ -631,14 +631,14 @@ export function BlogSection({ limit, showCta = true, paginate = false }) {
         <SectionHeading eyebrow="News & Blogs" title="Our Latest" accent="News & Blogs" />
         {showCta && <a href="/blog.html" className="btn-primary">View All Blogs <Icon name="arrow" className="h-4 w-4" /></a>}
       </div>
-      <div className="container-px mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="container-px mt-12 grid gap-6 md:grid-cols-3 md:gap-4 lg:gap-6">
         {items.map((b, i) => (
           <Reveal key={b.slug} delay={(i % 3) * 80} as="article" className="group overflow-hidden rounded-2xl bg-white ring-1 ring-navy/8 transition hover:-translate-y-1 hover:shadow-xl">
             <a href={`/blog/${b.slug}.html`} className="relative block overflow-hidden">
-              <img src={IMAGES[b.img]} alt={`${b.title} — KN Builders`} loading="lazy" className="h-48 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <img src={IMAGES[b.img]} alt={`${b.title} — KN Builders`} loading="lazy" className="h-48 w-full object-cover transition duration-500 group-hover:scale-105 md:h-36 lg:h-48" />
               <span className="absolute left-3 top-3 rounded-full bg-orange px-3 py-1 text-xs font-medium text-white">{b.tag}</span>
             </a>
-            <div className="p-5">
+            <div className="p-5 md:p-4 lg:p-5">
               <p className="text-xs text-navy/65">{b.date} · {b.readTime} read</p>
               <h3 className="heading mt-2 text-base text-navy"><a href={`/blog/${b.slug}.html`} className="transition hover:text-orange">{b.title}</a></h3>
               <p className="mt-2 text-sm text-navy/65">{b.excerpt}</p>
@@ -935,7 +935,7 @@ export function ContactSection({ withMap = true }) {
           <div aria-live="polite" role="status">
             {status === 'sent' && (
               <p className="mt-4 flex items-center gap-2 rounded-xl bg-olive/10 px-3 py-2.5 text-sm font-medium text-olive ring-1 ring-olive/20">
-                <Icon name="check" className="h-4 w-4 shrink-0" /> Message sent successfully. Our team will contact you shortly.
+                <Icon name="check" className="h-4 w-4 shrink-0" /> Your details were sent successfully. Our team will contact you shortly — check your inbox for a confirmation email.
               </p>
             )}
             {status === 'error' && (

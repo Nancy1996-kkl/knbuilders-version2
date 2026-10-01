@@ -96,8 +96,8 @@ export default function Article({ post }) {
 
       {/* body */}
       <article className="bg-cream py-12 sm:py-16">
-        <div className="container-px grid gap-10 lg:grid-cols-[1fr_300px]">
-          <div className="max-w-2xl">
+        <div className="container-px grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
+          <div className="min-w-0 max-w-2xl">
             <p className="text-lg text-navy/80">{post.excerpt}</p>
 
             {/* key takeaways — surfaced for readers and answer engines */}
