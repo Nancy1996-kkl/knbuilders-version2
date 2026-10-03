@@ -4,23 +4,47 @@ import { AUTHORS, relatedPosts } from '../content/posts.js'
 import { SERVICES } from '../data.js'
 import { CtaBand } from './common.jsx'
 
+/* Inline links: "[anchor](/path)" inside body text becomes a real link.
+   Internal links stay in the tab; external sources open in a new one. */
+function Rich({ text }) {
+  const parts = String(text).split(/(\[[^\]]+\]\([^)]+\))/g)
+  return parts.map((part, i) => {
+    const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+    if (!m) return part
+    const external = /^https?:/.test(m[2])
+    return (
+      <a key={i} href={m[2]} className="font-medium text-orange underline decoration-orange/30 underline-offset-2 transition hover:decoration-orange"
+        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{m[1]}</a>
+    )
+  })
+}
+
+const fmtDate = (iso) => new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+
 /* Renders a single block from a post body. */
 function Block({ block }) {
   if (block.h2) return <h2 className="heading mt-10 text-2xl text-navy">{block.h2}</h2>
   if (block.h3) return <h3 className="heading mt-7 text-lg text-navy">{block.h3}</h3>
-  if (block.p) return <p className="mt-4 text-navy/70">{block.p}</p>
+  if (block.p) return <p className="mt-4 text-navy/70"><Rich text={block.p} /></p>
+  if (block.cta)
+    return (
+      <div className="mt-8 flex flex-col gap-4 rounded-2xl bg-navy p-6 text-white sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-white/85">{block.cta.text}</p>
+        <a href="/contact.html" className="btn-primary shrink-0 justify-center">{block.cta.button} <Icon name="arrow" className="h-4 w-4" /></a>
+      </div>
+    )
   if (block.tip)
     return (
       <div className="mt-6 flex gap-3 rounded-2xl border-l-4 border-orange bg-cream-deep p-5">
         <span className="mt-0.5 shrink-0 text-orange"><Icon name="sparkles" className="h-5 w-5" /></span>
-        <p className="text-sm font-medium text-navy/80">{block.tip}</p>
+        <p className="text-sm font-medium text-navy/80"><Rich text={block.tip} /></p>
       </div>
     )
   if (block.ul)
     return (
       <ul className="mt-4 space-y-2.5">
         {block.ul.map((li) => (
-          <li key={li} className="flex gap-2.5 text-navy/70"><span className="mt-1 shrink-0 text-orange"><Icon name="check" className="h-4 w-4" /></span><span>{li}</span></li>
+          <li key={li} className="flex gap-2.5 text-navy/70"><span className="mt-1 shrink-0 text-orange"><Icon name="check" className="h-4 w-4" /></span><span><Rich text={li} /></span></li>
         ))}
       </ul>
     )
@@ -30,7 +54,7 @@ function Block({ block }) {
         {block.ol.map((li, i) => (
           <li key={li} className="flex gap-3 text-navy/70">
             <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-orange/15 text-xs font-bold text-orange">{i + 1}</span>
-            <span>{li}</span>
+            <span><Rich text={li} /></span>
           </li>
         ))}
       </ol>
@@ -83,7 +107,10 @@ export default function Article({ post }) {
             <img src={IMAGES[author.img]} alt={author.name} loading="lazy" className="h-10 w-10 rounded-full object-cover" />
             <div className="text-sm">
               <p className="font-semibold text-cream">{author.name}</p>
-              <p className="text-cream/60">{post.date} · {post.readTime} read</p>
+              <p className="text-cream/60">
+                {post.date} · {post.readTime} read
+                {post.updatedISO && post.updatedISO !== post.dateISO && <> · Updated <time dateTime={post.updatedISO}>{fmtDate(post.updatedISO)}</time></>}
+              </p>
             </div>
           </div>
         </div>
@@ -111,6 +138,17 @@ export default function Article({ post }) {
             </div>
 
             {post.body.map((block, i) => <Block key={i} block={block} />)}
+
+            {post.sources?.length > 0 && (
+              <div className="mt-10 border-t border-navy/10 pt-5">
+                <h2 className="text-sm font-semibold uppercase tracking-wide text-navy/70">Sources</h2>
+                <ul className="mt-2 space-y-1.5 text-sm text-navy/70">
+                  {post.sources.map((src) => (
+                    <li key={src.url}><a href={src.url} target="_blank" rel="noopener noreferrer" className="text-orange underline decoration-orange/30 underline-offset-2 hover:decoration-orange">{src.label}</a></li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* FAQ */}
             <h2 className="heading mt-12 text-2xl text-navy">Frequently asked questions</h2>

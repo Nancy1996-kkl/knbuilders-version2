@@ -73,7 +73,7 @@ ${POSTS.map((p) => `- [${p.title}](${base}/blog/${p.slug}.html) — ${p.excerpt}
 ## Common questions
 
 - **Where does ${SITE.name} operate?** From ${SITE.address.locality} across the north Tamil Nadu corridor, including ${SERVICE_AREAS.slice(0, 6).map((a) => a.name).join(', ')} and nearby localities, and in the delta districts around ${DELTA_AREAS.slice(0, 3).map((a) => a.name).join(', ')}.
-- **How long does it take to build an independent house in ${SITE.address.city}?** Typically 9–14 months from foundation to handover, depending on size and finishes. Concrete curing time cannot be compressed.
+- **How long does it take to build an independent house in ${SITE.address.city}?** Typically 9–14 months from foundation to handover, plus 1–3 months for design and approvals, depending on size and finishes. Concrete curing time cannot be compressed.
 - **What determines the cost of building a house?** Built-up area, specification and finishes, soil and foundation type, number of floors, structural complexity, and prevailing material rates. A written specification, not a headline per-square-foot rate, is what makes a quote meaningful.
 - **Are quotes free?** Yes — the first consultation, site assessment and itemised quotation are free.
 - **Are approvals handled?** Yes. CMDA and local body drawings and documentation are prepared and submitted on the client's behalf.
