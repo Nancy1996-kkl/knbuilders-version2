@@ -43,9 +43,12 @@ in static files: every `*.html`, `blog/*.html`, `services/*.html`, `public/sitem
 
 ## 2. Lead capture
 
-- [ ] Create a free key at https://web3forms.com and paste it into `src/site.js` →
-      `formAccessKey`. Until then, forms fall back to a WhatsApp deep-link.
-- [ ] Send a test submission from each form (quote popup, contact, newsletter).
+- [x] Forms post to a free Google Apps Script (`google-apps-script/Code.gs`). Each lead is
+      emailed to `SITE.leadEmail`, and the customer gets a confirmation email from your Gmail.
+- [ ] Deploy `Code.gs` as a Web app (Execute as: Me, Access: Anyone) and paste the `/exec`
+      URL into `src/site.js` → `leadScriptUrl`.
+- [ ] Send a test submission from each form (quote popup, contact).
+
 
 ## 3. Images & icons  (need raster export — couldn't generate here)
 

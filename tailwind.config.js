@@ -3,6 +3,10 @@ export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
+      // `/8` is used for hairline borders (ring-navy/8 etc.) but is not in Tailwind's
+      // default opacity scale — without this those classes were silently dropped and
+      // cards fell back to the browser-blue default ring colour.
+      opacity: { 8: '0.08' },
       colors: {
         // Warm earthy palette (construction materials theme)
         // "navy" kept as a key name to avoid sweeping renames, but now maps to charcoal/olive-dark.

@@ -8,7 +8,8 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { SITE, SERVICE_AREA_NAMES } from '../src/site.js'
-import { faqsFor } from '../src/data.js'
+import { faqsFor, IMAGES } from '../src/data.js'
+import { getPost } from '../src/content/posts.js'
 
 const root = process.cwd()
 const dist = resolve(root, 'dist')
@@ -81,14 +82,15 @@ function syncNap(html) {
 // visible content as a structured-data error, so the block is regenerated here
 // from the same faqsFor() the page renders — the two can no longer disagree.
 //
-// Pages with no FAQPage block (or none of their own questions) are left alone;
-// the service- and blog-detail pages carry hand-written, page-specific FAQs
-// that are not part of the shared list.
+// Blog articles take their questions from the post itself (src/content/posts.js),
+// so editing an article's FAQs updates its schema too. Pages with no FAQPage
+// block (or none of their own questions) are left alone; the service-detail
+// pages carry hand-written, page-specific FAQs that are not part of the shared list.
 const FAQ_RE = /<script type="application\/ld\+json">\s*\{\s*"@context":\s*"https:\/\/schema\.org",\s*"@type":\s*"FAQPage"[\s\S]*?<\/script>/
 
 function syncFaqSchema(html, key) {
   if (!FAQ_RE.test(html)) return html
-  const items = faqsFor(key)
+  const items = key.startsWith('post:') ? (getPost(key.slice(5))?.faqs || []) : faqsFor(key)
   if (!items.length) return html
   const json = {
     '@context': 'https://schema.org',
@@ -102,6 +104,23 @@ function syncFaqSchema(html, key) {
   // Indented to sit with the surrounding hand-written blocks in the <head>.
   const block = `<script type="application/ld+json">\n${JSON.stringify(json, null, 2).replace(/^/gm, '    ')}\n    </script>`
   return html.replace(FAQ_RE, block)
+}
+
+// --- Article share image ------------------------------------------------
+// Blog heads were hand-written with a generic stock photo for og:image /
+// twitter:image / BlogPosting.image. Point them at the article's own hero image
+// (its hashed URL from the client build) so shares and rich results show the
+// right picture. Non-article pages are left alone.
+function syncPostImage(html, key) {
+  if (!key.startsWith('post:')) return html
+  const post = getPost(key.slice(5))
+  const rel = post && IMAGES[post.img]
+  if (!rel || !rel.startsWith('/assets/')) return html
+  const abs = SITE.url.replace(/\/$/, '') + rel
+  return html
+    .replace(/(<meta property="og:image" content=")[^"]*(")/, `$1${abs}$2`)
+    .replace(/(<meta name="twitter:image" content=")[^"]*(")/, `$1${abs}$2`)
+    .replace(/("@type": "BlogPosting",[\s\S]*?"image":\s*")[^"]*(")/, `$1${abs}$2`)
 }
 
 // Replace the dev placeholder content inside <div id="root">…</div> with SSR HTML.
@@ -130,7 +149,7 @@ async function main() {
     if (!existsSync(path)) { console.warn(`[prerender] skip (missing): ${file}`); continue }
     const template = readFileSync(path, 'utf8')
     const appHtml = render(key)
-    writeFileSync(path, syncFaqSchema(syncNap(inject(template, appHtml)), key), 'utf8')
+    writeFileSync(path, syncPostImage(syncFaqSchema(syncNap(inject(template, appHtml)), key), key), 'utf8')
     console.log(`[prerender] baked ${file} (${appHtml.length.toLocaleString()} chars)`)
   }
   console.log('[prerender] done.')

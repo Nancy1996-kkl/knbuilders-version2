@@ -76,8 +76,8 @@ export default function ServiceDetail({ service }) {
       />
 
       <section className="bg-cream py-12 sm:py-16">
-        <div className="container-px grid gap-10 lg:grid-cols-[1fr_320px]">
-          <div className="max-w-2xl">
+        <div className="container-px grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="min-w-0 max-w-2xl">
             <img src={IMAGES[service.img]} alt={`${service.title} services by KN Builders in Chennai`} className="h-56 w-full rounded-2xl object-cover sm:h-80" />
             {service.body.map((block, i) => <Block key={i} block={block} />)}
 

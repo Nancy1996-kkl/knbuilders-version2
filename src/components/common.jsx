@@ -5,7 +5,7 @@ import { IMAGES } from '../data.js'
 import { submitLead, formValues } from '../lib/lead.js'
 
 /* ---------------- Lead form helpers ---------------- */
-// Hidden honeypot field — bots fill it, humans don't (Web3Forms drops them).
+// Hidden honeypot field — bots fill it, humans don't (lead.js drops them).
 export function Honeypot() {
   return <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
 }
@@ -158,10 +158,14 @@ export function CountUp({ value, start }) {
   const reduced = useReducedMotion()
 
   useEffect(() => {
-    if (reduced) return
+    // Read the media query directly: the `reduced` state starts false on the first
+    // render, so relying on it alone reset the number to 0 and then never animated
+    // on phones with "reduce motion" turned on (stats showed "0+").
+    const prefersReduced = reduced || window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReduced) { setN(num); setArmed(false); return }
     setN(0)
     setArmed(true)
-  }, [reduced])
+  }, [reduced, num])
 
   useEffect(() => {
     if (!start || !armed || reduced) return
@@ -182,12 +186,14 @@ export function CountUp({ value, start }) {
 }
 
 /* ---------------- Section heading ---------------- */
-export function SectionHeading({ eyebrow, title, accent, center = false, dark = false }) {
+// `onOlive`: terracotta on the olive band is ~1.4:1 contrast (unreadable), so the
+// eyebrow and accent switch to a light peach there.
+export function SectionHeading({ eyebrow, title, accent, center = false, dark = false, onOlive = false }) {
   return (
     <div className={center ? 'text-center' : ''}>
-      <span className={`eyebrow ${center ? 'justify-center' : ''}`}>{eyebrow}</span>
+      <span className={`eyebrow ${center ? 'justify-center' : ''} ${onOlive ? 'eyebrow-light' : ''}`}>{eyebrow}</span>
       <h2 className={`heading mt-4 text-3xl sm:text-4xl ${dark ? 'text-white' : 'text-navy'}`}>
-        {title} {accent && <span className="text-orange">{accent}</span>}
+        {title} {accent && <span className={onOlive ? 'text-[#f7c9a3]' : 'text-orange'}>{accent}</span>}
       </h2>
     </div>
   )

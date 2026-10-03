@@ -82,7 +82,7 @@ export default function QuotePopup({ open, onOpen, onClose }) {
           <div className="px-7 py-14 text-center">
             <span className="success-pop mx-auto grid h-16 w-16 place-items-center rounded-full bg-orange text-white"><Icon name="check" className="h-8 w-8" /></span>
             <h2 className="heading mt-5 text-2xl text-navy">Thank you! 🎉</h2>
-            <p className="mx-auto mt-2 max-w-sm text-sm text-navy/65">Your request is in. Our team will reach out shortly. For anything urgent, call {SITE.phone}.</p>
+            <p className="mx-auto mt-2 max-w-sm text-sm text-navy/65">Your details were sent successfully. Our team will contact you shortly — we've also emailed you a confirmation. For anything urgent, call {SITE.phone}.</p>
             <button onClick={onClose} className="btn-primary mt-6">Done <Icon name="arrow" className="h-4 w-4" /></button>
           </div>
         ) : (
@@ -133,6 +133,10 @@ export default function QuotePopup({ open, onOpen, onClose }) {
                     <label htmlFor="q-phone" className="text-sm font-medium text-navy">Phone *</label>
                     <input id="q-phone" name="phone" required type="tel" placeholder="+91 ……" className="mt-1.5 w-full rounded-xl border border-navy/15 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-orange" />
                   </div>
+                </div>
+                <div className="mt-4">
+                  <label htmlFor="q-email" className="text-sm font-medium text-navy">Email *</label>
+                  <input id="q-email" name="email" required type="email" autoComplete="email" placeholder="you@example.com" className="mt-1.5 w-full rounded-xl border border-navy/15 bg-white px-4 py-2.5 text-sm outline-none transition focus:border-orange" />
                 </div>
                 <div className="mt-4">
                   <label htmlFor="q-service" className="text-sm font-medium text-navy">I'm interested in *</label>
