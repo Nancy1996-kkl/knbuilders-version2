@@ -19,6 +19,16 @@ function Rich({ text }) {
   })
 }
 
+/* Author picture: real photo when one is set, otherwise a person icon. */
+function AuthorAvatar({ author, size }) {
+  if (author.img) return <img src={IMAGES[author.img]} alt={author.name} loading="lazy" className={`${size} rounded-full object-cover`} />
+  return (
+    <span role="img" aria-label={author.name} className={`${size} grid shrink-0 place-items-center rounded-full bg-orange text-white`}>
+      <Icon name="user" className="h-1/2 w-1/2" />
+    </span>
+  )
+}
+
 const fmtDate = (iso) => new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
 
 /* Renders a single block from a post body. */
@@ -104,7 +114,7 @@ export default function Article({ post }) {
           <span className="inline-flex items-center gap-2 rounded-full bg-orange px-3 py-1 text-xs font-semibold text-white">{post.tag}</span>
           <h1 className="heading mt-4 max-w-3xl text-3xl text-cream sm:text-4xl lg:text-5xl">{post.title}</h1>
           <div className="mt-5 flex items-center gap-3">
-            <img src={IMAGES[author.img]} alt={author.name} loading="lazy" className="h-10 w-10 rounded-full object-cover" />
+            <AuthorAvatar author={author} size="h-10 w-10" />
             <div className="text-sm">
               <p className="font-semibold text-cream">{author.name}</p>
               <p className="text-cream/60">
@@ -165,7 +175,7 @@ export default function Article({ post }) {
 
             {/* author bio */}
             <div className="mt-12 flex items-center gap-4 rounded-2xl bg-cream-deep p-6 ring-1 ring-navy/8">
-              <img src={IMAGES[author.img]} alt={author.name} loading="lazy" className="h-14 w-14 rounded-full object-cover" />
+              <AuthorAvatar author={author} size="h-14 w-14" />
               <div>
                 <p className="text-xs uppercase tracking-wide text-navy/70">Written by</p>
                 <p className="heading text-base text-navy">{author.name}</p>

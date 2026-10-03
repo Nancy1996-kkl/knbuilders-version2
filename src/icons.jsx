@@ -25,6 +25,10 @@ export const Icon = ({ name, className = 'h-6 w-6' }) => {
       return (
         <svg {...props}><rect x="4" y="4" width="16" height="12" rx="2" /><path d="M8 20h8M12 16v4" /></svg>
       )
+    case 'user':
+      return (
+        <svg {...props}><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg>
+      )
     case 'team':
       return (
         <svg {...props}><circle cx="9" cy="8" r="3" /><path d="M3 20a6 6 0 0 1 12 0" /><path d="M16 6a3 3 0 0 1 0 6M21 20a6 6 0 0 0-5-5.9" /></svg>

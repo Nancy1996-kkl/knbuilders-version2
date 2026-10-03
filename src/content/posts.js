@@ -10,9 +10,11 @@
 // stays accurate whenever an article is edited. The blog list in data.js
 // (BLOGS) is derived from this array too — edit titles and excerpts here only.
 
+// `img` is optional: without a real photo the article shows a neutral person
+// icon instead of a stock picture (stock photos did not match the people named).
 export const AUTHORS = {
-  priya: { name: 'Priya Venkat', role: 'Principal Architect, KN Builders', img: 'team4' },
-  arjun: { name: 'Arjun Mehta', role: 'Lead Civil Engineer, KN Builders', img: 'team2' },
+  priya: { name: 'Priya Venkat', role: 'Principal Architect, KN Builders' },
+  arjun: { name: 'Arjun Mehta', role: 'Lead Civil Engineer, KN Builders' },
   tamilpriya: { name: 'Tamil Priya', role: 'Founder & CEO, KN Builders', img: 'team1' },
 }
 
