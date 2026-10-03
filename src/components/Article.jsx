@@ -128,7 +128,7 @@ export default function Article({ post }) {
 
       {/* hero image */}
       <div className="container-px mt-6 sm:mt-8">
-        <img src={IMAGES[post.img]} alt={`${post.title} — KN Builders, Chennai`} className="h-56 w-full rounded-2xl object-cover shadow-xl sm:h-80 lg:h-[420px]" />
+        <img src={IMAGES[post.img]} alt={post.imgAlt || `${post.title} — KN Builders, Chennai`} className="h-56 w-full rounded-2xl object-cover shadow-xl sm:h-80 lg:h-[420px]" />
       </div>
 
       {/* body */}

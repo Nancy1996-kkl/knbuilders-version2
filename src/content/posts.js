@@ -30,6 +30,7 @@ export const POSTS = [
     dateISO: '2026-05-28',
     updatedISO: '2026-10-01',
     img: 'blog4',
+    imgAlt: 'Model of a two-storey house beside a calculator and building plans, with the Chennai skyline behind',
     author: 'arjun',
     excerpt: 'Per-square-foot rates by specification, where the money actually goes, the costs people forget, and how to plan a realistic budget in Chennai.',
     takeaways: [
@@ -41,7 +42,7 @@ export const POSTS = [
     body: [
       { p: 'The first question almost every homeowner in Chennai asks is simple: what will it cost to build my house? The honest answer is that it depends on what you build and how you finish it — but that does not mean you should accept a vague figure. With the right breakdown, you can plan a realistic budget before the first brick is laid.' },
 
-      { h2: 'Typical per-square-foot rates in 2026' },
+      { h2: 'How much does it cost per sq ft in Chennai in 2026?' },
       { p: 'For an independent house in and around Tambaram and southern Chennai, turnkey construction in 2026 generally falls into these bands, measured per square foot of built-up area:' },
       { table: {
         head: ['Specification', 'Approx. rate (per sq ft)', 'What it usually includes'],
@@ -54,6 +55,8 @@ export const POSTS = [
       { p: 'As a rough guide, a 1,200 sq ft home at a standard specification works out to approximately ₹24–34 lakh for construction, excluding land, approvals and interiors. These are indicative market ranges as of October 2026, not a quote — your actual figure depends on the design, the site and the finishes you choose. For an exact figure for your plot, see our [independent house construction service in Tambaram](/services/residential-construction.html).' },
       { cta: { text: 'Want a figure for your own plot? We do a free site assessment and give you an itemised estimate before any commitment.', button: 'Get an itemised estimate' } },
 
+      { h2: 'Example: cost of a G+1 house' },
+      { p: 'A G+1 house with about 1,000 sq ft on each floor has roughly 2,000 sq ft of built-up area. At a standard specification of ₹2,000–₹2,800 per sq ft, that works out to roughly ₹40–56 lakh for construction, again excluding land, approvals and interiors. Adding a floor does not double the foundation cost, but the foundation and columns must be designed for the extra load from the start — plan for G+1 even if you build the ground floor first.' },
       { h2: 'Where the money goes' },
       { p: 'Knowing how a construction budget is typically split helps you see which decisions matter most. For a standard-specification house, the approximate share of each part is:' },
       { table: {
@@ -94,6 +97,17 @@ export const POSTS = [
         'Interiors — wardrobes, modular kitchen and false ceilings.',
       ] },
 
+      { h2: 'How are payments usually staged?' },
+      { p: 'Payments are normally tied to work that is finished and checked, not to dates. A typical sequence looks like this:' },
+      { ol: [
+        'A modest advance when the contract is signed, so the builder can mobilise.',
+        'Foundation and plinth completed.',
+        'Each roof slab cast (one stage per floor).',
+        'Brickwork and plastering completed.',
+        'Flooring, doors, windows and fittings completed.',
+        'Handover, after the snag list is fixed.',
+      ] },
+      { tip: 'Agree the stages and the amount for each in the contract before work starts. Some owners also hold back a small final amount until every snag is fixed.' },
       { h2: 'How to plan your budget' },
       { ol: [
         'Fix your specification before you compare quotes, so every builder prices the same thing — our guide on [how to choose a builder](/blog/choosing-a-builder-tambaram.html) lists what to compare.',
@@ -111,6 +125,7 @@ export const POSTS = [
       { q: 'How much does it cost to build a 1,200 sq ft house in Chennai?', a: 'At a standard 2026 specification of roughly ₹2,000–₹2,800 per sq ft, a 1,200 sq ft home costs approximately ₹24–34 lakh for construction, excluding land, approvals and interiors.' },
       { q: 'Does the per-square-foot rate include materials and labour?', a: 'A turnkey rate normally includes materials, labour and supervision. Items such as approvals, utility connections, sump, compound wall, borewell and interiors are often quoted separately, so always confirm what is in and out of scope.' },
       { q: 'Which part of the construction cost is the largest?', a: 'The structure — foundation, columns, beams, slabs and walls — is usually 35–40% of the total. It is also the one part that cannot be upgraded later, so it should not be where you economise.' },
+      { q: 'How much does a G+1 house cost in Chennai?', a: 'A G+1 house of about 2,000 sq ft built-up area costs roughly ₹40–56 lakh at a standard 2026 specification of ₹2,000–₹2,800 per sq ft, excluding land, approvals and interiors.' },
       { q: 'How can I avoid cost overruns?', a: 'Lock the specification early, insist on an itemised quote tied to a milestone payment schedule, and keep a 5–10% contingency for changes.' },
     ],
   },
@@ -120,11 +135,12 @@ export const POSTS = [
     tag: 'Buyer Guide',
     title: 'How to Choose the Right Builder in Tambaram',
     metaTitle: 'How to Choose a Builder in Tambaram, Chennai | KN Builders',
-    metaDescription: 'The checks to make, questions to ask, contract terms to insist on and red flags to avoid before signing with a builder in Tambaram or greater Chennai.',
+    metaDescription: 'Checks, questions, contract terms and red flags to review before you sign with a house builder in Tambaram or greater Chennai.',
     date: 'May 12, 2026',
     dateISO: '2026-05-12',
     updatedISO: '2026-10-01',
     img: 'blog6',
+    imgAlt: 'Homeowner and builder shaking hands on a construction site',
     author: 'tamilpriya',
     excerpt: 'The checks to make, the questions to ask, the contract terms to insist on and the red flags to avoid before you sign with a builder.',
     takeaways: [
@@ -135,8 +151,9 @@ export const POSTS = [
     ],
     body: [
       { p: 'Choosing a builder is the most important decision you will make about your home — more important than the tiles or the paint. The right partner delivers on time, communicates clearly and stands behind their work. Here is how to find them.' },
+      { p: 'A note on where this comes from: KN Builders is itself a construction company. Use this as a checklist for any builder you are considering — including us. You can read about [our team and how we work](/about.html).' },
 
-      { h2: 'Look at completed work, not just brochures' },
+      { h2: 'How do you check a builder’s past work?' },
       { p: 'Ask to visit completed projects and, ideally, an ongoing site. A builder confident in their quality will happily arrange it — you can start with our [completed projects in Tambaram and Chennai](/projects.html). Pay attention to finishing details such as tile joints, plaster lines and how doors close — they reveal the care taken in the parts you cannot see. On an ongoing site, use our [site-visit safety checklist](/blog/site-safety-tips.html) to judge how well it is run.' },
       { p: 'Speak to past clients if you can. Ask whether the project finished on time, whether the final bill matched the quote, and how the builder handled problems after handover.' },
 
@@ -151,7 +168,7 @@ export const POSTS = [
       ] },
       { p: 'If you are buying a flat in a larger project rather than building your own house, also check that the project is registered with [TNRERA](https://rera.tn.gov.in/), the Tamil Nadu real estate regulator.' },
 
-      { h2: 'Questions worth asking' },
+      { h2: 'What questions should you ask a builder?' },
       { ol: [
         'Who is my single point of contact during the build?',
         'Who prepares the structural design, and will I get the drawings?',
@@ -164,7 +181,7 @@ export const POSTS = [
       { tip: 'If a quote is dramatically cheaper than everyone else, ask what was left out. Price is usually a signal of specification — compare it against [typical construction rates in Chennai](/blog/cost-to-build-house-chennai.html).' },
       { cta: { text: 'Want to put these questions to us? Book a free site visit and we will walk you through our specification and contract line by line.', button: 'Book a free site visit' } },
 
-      { h2: 'What the contract should include' },
+      { h2: 'What should a construction contract include?' },
       { ul: [
         'Full specification — brands and grades of cement, steel, tiles, fittings and paint.',
         'Drawings and the built-up area being quoted.',
@@ -174,6 +191,20 @@ export const POSTS = [
         'Defect liability or warranty period after handover.',
       ] },
 
+      { h2: 'How to compare three quotes' },
+      { p: 'Put the quotes side by side and check the same lines in each. Differences here explain most of the gap between a cheap quote and a fair one:' },
+      { table: {
+        head: ['Compare', 'Why it matters'],
+        rows: [
+          ['Built-up area quoted', 'A lower rate on a larger measured area can cost more overall'],
+          ['Cement and steel brands and grades', 'The structure is the one part you cannot upgrade later'],
+          ['Flooring, fittings and paint specification', 'Finishes cause the biggest swings between quotes'],
+          ['What is excluded', 'Approvals, sump, compound wall and interiors are often left out'],
+          ['Payment schedule', 'Payments should follow completed work, not dates'],
+          ['Timeline and delay terms', 'Shows how firm the completion date really is'],
+          ['Warranty after handover', 'Tells you who fixes defects, and for how long'],
+        ],
+      } },
       { h2: 'Building in Tambaram: local checks' },
       { p: 'A few questions are specific to building in and around Tambaram:' },
       { ul: [
@@ -210,6 +241,7 @@ export const POSTS = [
     dateISO: '2026-05-20',
     updatedISO: '2026-10-01',
     img: 'blog5',
+    imgAlt: 'Contemporary independent house designed around Vaastu principles',
     author: 'priya',
     excerpt: 'How to follow Vaastu principles without compromising on light, ventilation, space and contemporary design.',
     takeaways: [
@@ -220,7 +252,7 @@ export const POSTS = [
     body: [
       { p: 'Many homeowners in Chennai want a home that follows Vaastu while still feeling open, bright and contemporary. The good news: with thoughtful planning, you rarely have to choose between the two.' },
 
-      { h2: 'Start with orientation' },
+      { h2: 'Does plot orientation matter in Vaastu?' },
       { p: 'The direction a plot faces and where the main entrance sits are the foundations of Vaastu. Settling these early — during the [design and drawings stage](/blog/successful-construction-project-steps.html) — lets the architect plan room placement, ventilation and daylight around them, instead of forcing awkward compromises later.' },
       { p: 'East- and north-facing plots are often preferred, but a south- or west-facing plot can be planned just as well. The layout inside matters far more than the road the plot faces.' },
 
@@ -233,7 +265,7 @@ export const POSTS = [
         'A light, open centre of the house (the Brahmasthan) suits courtyards and double-height living spaces.',
       ] },
 
-      { h2: 'Common room placements' },
+      { h2: 'Where should each room be as per Vaastu?' },
       { table: {
         head: ['Space', 'Usual Vaastu preference', 'Design benefit'],
         rows: [
@@ -277,6 +309,7 @@ export const POSTS = [
     dateISO: '2026-06-08',
     updatedISO: '2026-10-01',
     img: 'blog2',
+    imgAlt: 'Site engineers reviewing progress at a building site at sunset',
     author: 'arjun',
     excerpt: 'A clear, step-by-step framework that takes a project from first consultation all the way to a smooth handover.',
     takeaways: [
@@ -319,7 +352,7 @@ export const POSTS = [
       { h2: 'Approvals in Tamil Nadu' },
       { p: 'Construction should never begin before the building plan is approved. For small residential buildings, Tamil Nadu offers an online self-certification route through the [state planning permission portal](https://www.onlineppa.tn.gov.in/) that can issue a permit quickly; larger buildings follow the regular approval process. Eligibility limits have been revised more than once since the scheme started in 2024, so confirm the current rules for your plot on the portal before you plan your timeline.' },
 
-      { h2: 'A typical timeline' },
+      { h2: 'How long does it take to build a house in Chennai?' },
       { p: 'For an independent G+1 house of around 1,500–2,000 sq ft, construction typically takes 9–14 months from foundation to handover, plus time for design and approvals:' },
       { table: {
         head: ['Stage', 'Typical duration'],
@@ -358,6 +391,7 @@ export const POSTS = [
     dateISO: '2026-06-11',
     updatedISO: '2026-10-01',
     img: 'blog3',
+    imgAlt: 'Construction site with workers in helmets and safety signage',
     author: 'arjun',
     excerpt: 'Practical safety practices that protect your workers, your timeline and your budget on every site.',
     takeaways: [
@@ -391,7 +425,7 @@ export const POSTS = [
         'Manual handling injuries — the slow, cumulative kind that rarely get reported but steadily reduce a crew’s capacity.',
       ] },
 
-      { h2: 'The monsoon changes the risk picture' },
+      { h2: 'How does the monsoon affect site safety in Chennai?' },
       { p: 'Chennai’s north-east monsoon, roughly October to December, introduces hazards that are absent for most of the year — and they arrive quickly once the rain sets in:' },
       { ul: [
         'Excavations fill and trench walls soften, raising collapse risk substantially.',
@@ -402,7 +436,7 @@ export const POSTS = [
       ] },
       { p: 'A builder who plans around the monsoon — completing excavation and foundations before the heaviest weeks and protecting stored material — is managing both safety and your schedule at the same time. It is worth raising when you [choose a builder](/blog/choosing-a-builder-tambaram.html).' },
 
-      { h2: 'What to look for when you visit your site' },
+      { h2: 'What should you check when you visit your site?' },
       { p: 'You do not need technical training to read a site. These signals are visible to anyone:' },
       { ul: [
         'Are workers wearing helmets and footwear, and is anyone at height using a harness?',
@@ -437,6 +471,7 @@ export const POSTS = [
     dateISO: '2026-06-02',
     updatedISO: '2026-10-01',
     img: 'blog1',
+    imgAlt: 'Engineer using a tablet with a 3D model of a building under construction',
     author: 'priya',
     excerpt: 'From 3D BIM models to drones and project-tracking software, here is how digital tools are making builds more transparent and predictable.',
     takeaways: [
@@ -448,7 +483,7 @@ export const POSTS = [
     body: [
       { p: 'Construction has been slower to digitise than most industries, but the tools that have arrived are changing how projects are planned, tracked and handed over. For a homeowner, the value is not the technology itself — it is the visibility it gives you.' },
 
-      { h2: 'BIM: designing the building before building it' },
+      { h2: 'What is BIM, and why does it matter for your home?' },
       { p: 'Building Information Modelling (BIM) produces a three-dimensional model that carries real information about each element — not just how the building looks, but what each component is and how it relates to the rest.' },
       { p: 'The practical benefit is clash detection. Structural, plumbing and electrical layouts can be checked against each other before anyone is on site, so the beam that would have run through a window opening, or the drain line crossing a footing, is found on screen instead of during construction. Every clash resolved in the model is a delay and a variation avoided later.' },
       { tip: 'Ask to see your design in 3D before construction starts. It is far easier to say “the kitchen feels cramped” while it is still a model than after the walls are up. Our [design and planning service](/services/design-and-planning.html) includes 3D design.' },
@@ -468,7 +503,7 @@ export const POSTS = [
       ] },
       { p: 'That last item prevents the most common source of end-of-project disputes. Verbal changes agreed on site are remembered differently by each party months later; written ones are not. It is also why a [written contract with a variations clause](/blog/choosing-a-builder-tambaram.html) matters.' },
 
-      { h2: 'Materials and methods that have improved' },
+      { h2: 'Which modern materials make a difference?' },
       { p: 'Not every advance is digital. Several material and method changes have made a real difference to build quality — and some, like wall material, also affect the [cost of building](/blog/cost-to-build-house-chennai.html):' },
       { table: {
         head: ['Development', 'What it improves'],

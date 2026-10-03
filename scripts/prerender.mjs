@@ -8,7 +8,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { SITE, SERVICE_AREA_NAMES } from '../src/site.js'
-import { faqsFor } from '../src/data.js'
+import { faqsFor, IMAGES } from '../src/data.js'
 import { getPost } from '../src/content/posts.js'
 
 const root = process.cwd()
@@ -106,6 +106,23 @@ function syncFaqSchema(html, key) {
   return html.replace(FAQ_RE, block)
 }
 
+// --- Article share image ------------------------------------------------
+// Blog heads were hand-written with a generic stock photo for og:image /
+// twitter:image / BlogPosting.image. Point them at the article's own hero image
+// (its hashed URL from the client build) so shares and rich results show the
+// right picture. Non-article pages are left alone.
+function syncPostImage(html, key) {
+  if (!key.startsWith('post:')) return html
+  const post = getPost(key.slice(5))
+  const rel = post && IMAGES[post.img]
+  if (!rel || !rel.startsWith('/assets/')) return html
+  const abs = SITE.url.replace(/\/$/, '') + rel
+  return html
+    .replace(/(<meta property="og:image" content=")[^"]*(")/, `$1${abs}$2`)
+    .replace(/(<meta name="twitter:image" content=")[^"]*(")/, `$1${abs}$2`)
+    .replace(/("@type": "BlogPosting",[\s\S]*?"image":\s*")[^"]*(")/, `$1${abs}$2`)
+}
+
 // Replace the dev placeholder content inside <div id="root">…</div> with SSR HTML.
 // Anchors on the root open tag and the first <script> after it, so it works
 // regardless of Vite's hashed asset names.
@@ -132,7 +149,7 @@ async function main() {
     if (!existsSync(path)) { console.warn(`[prerender] skip (missing): ${file}`); continue }
     const template = readFileSync(path, 'utf8')
     const appHtml = render(key)
-    writeFileSync(path, syncFaqSchema(syncNap(inject(template, appHtml)), key), 'utf8')
+    writeFileSync(path, syncPostImage(syncFaqSchema(syncNap(inject(template, appHtml)), key), key), 'utf8')
     console.log(`[prerender] baked ${file} (${appHtml.length.toLocaleString()} chars)`)
   }
   console.log('[prerender] done.')
