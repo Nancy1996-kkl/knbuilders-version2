@@ -23,7 +23,7 @@
  */
 
 /* ===================== Business details ===================== */
-const OWNER_EMAIL = 'nancykkl96@gmail.com';
+const OWNER_EMAIL = 'architects.kn@gmail.com';
 const BUSINESS_NAME = 'KN Builders';
 const TAGLINE = 'Construction Excellence in Tambaram';
 const BUSINESS_PHONE = '+91 824 847 4364';

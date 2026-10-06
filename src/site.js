@@ -9,8 +9,8 @@ export const SITE = {
   phone: '+91 824 847 4364',
   phoneHref: 'tel:+918248474364',
   whatsapp: 'https://wa.me/918248474364',
-  email: 'nancykkl96@gmail.com',
-  emailHref: 'mailto:nancykkl96@gmail.com',
+  email: '',
+  emailHref: 'mailto:',
   foundingYear: 2001,
   priceRange: '₹₹',
   address: {
@@ -28,8 +28,8 @@ export const SITE = {
   // Lead delivery (Google Apps Script, free — see google-apps-script/Code.gs).
   // Every form submission is emailed to leadEmail, and the customer gets a
   // "Our team will contact you shortly" confirmation. Paste the Web app /exec URL here:
-  leadEmail: 'nancykkl96@gmail.com',
-  leadScriptUrl: 'https://script.google.com/macros/s/AKfycbzaOIZ9gQZDo6qukTlYPTqBV4g_BaN-Iev9RVkOznmpQAw2M0C6ERpA0-XlEQ-Cvc7myg/exec',
+  leadEmail: '',
+   leadScriptUrl: 'https://script.google.com/macros/s/AKfycbzW0vZDBbuSKMXOWMBguA6b7cBX8g0i1kBwC2tTtz86V5QmkvsmgEUHQxOx5wfuKOCI/exec',
   hours: [
     { days: 'Mon – Fri', time: '9:00 – 18:00' },
     { days: 'Saturday', time: '10:00 – 15:00' },
