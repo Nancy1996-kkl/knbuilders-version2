@@ -14,7 +14,7 @@ export const SITE = {
   foundingYear: 2001,
   priceRange: '₹₹',
   address: {
-    street: 'No. 1390, Royappa Nagar',
+    street: '1390, Royappa Nagar',
     locality: 'Varadharajapuram',
     region: 'Tamil Nadu',
     city: 'Chennai',

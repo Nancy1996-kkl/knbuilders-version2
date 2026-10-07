@@ -4,7 +4,7 @@ import { SITE, SERVICE_REGIONS } from '../site.js'
 import craftingExcellenceImage from '../images/kn-builders-quality-construction-workmanship.png'
 import {
   IMAGES, HERO_SLIDES, STATS, SERVICES, STEPS, PROJECTS,
-  WHY_CHOOSE, TEAM, TESTIMONIALS, BLOGS,
+  WHY_CHOOSE, TEAM, TESTIMONIALS, BLOGS, GOOGLE_REVIEWS,
 } from '../data.js'
 import {
   CountUp, SectionHeading, Reveal, Field, InfoBlock, useReducedMotion, useInView, useLeadForm, Honeypot,
@@ -613,6 +613,137 @@ export function TestimonialsSection({ limit }) {
           </div>
         </div>
       )}
+    </section>
+  )
+}
+
+/* ===================== GOOGLE REVIEWS ===================== */
+function Stars({ value = 5, className = 'h-4 w-4', label = true }) {
+  const full = Math.round(Number(value) || 0)
+  return (
+    <span className="inline-flex items-center gap-0.5" {...(label ? { role: 'img', 'aria-label': `${value} out of 5 stars` } : { 'aria-hidden': true })}>
+      {[...Array(5)].map((_, i) => (
+        <Icon key={i} name="star" className={`${className} ${i < full ? 'text-[#fbbc04]' : 'text-current opacity-20'}`} />
+      ))}
+    </span>
+  )
+}
+
+const initials = (name) => name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join('')
+const AVATAR_TONES = ['bg-orange', 'bg-olive', 'bg-navy']
+
+function ReviewCard({ r, i, featured = false }) {
+  return (
+    <figure className={`group relative flex h-full flex-col rounded-3xl border border-navy/10 bg-white p-6 shadow-[0_10px_30px_-18px_rgba(46,42,38,0.35)] transition duration-300 hover:-translate-y-1 hover:border-orange/30 hover:shadow-[0_22px_45px_-20px_rgba(201,89,31,0.35)] sm:p-7 ${featured ? 'md:col-span-2 md:p-9' : ''}`}>
+      <span aria-hidden className={`pointer-events-none absolute bottom-2 right-6 font-display font-extrabold leading-none text-orange/10 ${featured ? 'text-[110px]' : 'text-[80px]'}`}>&ldquo;</span>
+      <div className="flex items-center justify-between gap-3">
+        <Stars value={r.rating} className={featured ? 'h-5 w-5' : 'h-4 w-4'} />
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-cream px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-navy/60">
+          <Icon name="check" className="h-3 w-3 text-olive" /> Google review
+        </span>
+      </div>
+      <blockquote className={`relative mt-5 flex-1 text-navy/80 ${featured ? 'text-lg leading-8 sm:text-xl sm:leading-9' : 'text-[15px] leading-7'}`}>
+        <p>{r.text}</p>
+      </blockquote>
+      <figcaption className="mt-6 flex items-center gap-3 border-t border-navy/10 pt-5">
+        <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-full text-sm font-bold text-white ring-4 ring-cream ${AVATAR_TONES[i % AVATAR_TONES.length]}`} aria-hidden>
+          {initials(r.name)}
+        </span>
+        <span className="min-w-0">
+          <span className="block truncate font-semibold text-navy">{r.name}</span>
+          <span className="block text-xs text-navy/55">{r.date ? `Verified client · ${r.date}` : 'Verified client'}</span>
+        </span>
+      </figcaption>
+    </figure>
+  )
+}
+
+export function GoogleReviewsSection() {
+  const { rating, total, distribution = {}, highlights = [], reviews, profileUrl, writeReviewUrl } = GOOGLE_REVIEWS
+  const writeUrl = writeReviewUrl || profileUrl
+  const ext = { target: '_blank', rel: 'noopener noreferrer' }
+  const [featured, ...rest] = reviews
+
+  return (
+    <section id="google-reviews" className="relative overflow-hidden bg-cream-deep py-16 sm:py-24" aria-labelledby="google-reviews-title">
+      <div className="pointer-events-none absolute -left-32 top-24 h-80 w-80 rounded-full bg-orange/10 blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-olive/10 blur-3xl" aria-hidden />
+
+      <div className="container-px relative">
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <span className="eyebrow justify-center">Google Reviews</span>
+          <h2 id="google-reviews-title" className="heading mt-4 text-3xl text-navy sm:text-4xl lg:text-5xl">
+            Rated <span className="text-orange">{Number(rating).toFixed(1)} out of 5</span> by Our Clients
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-navy/70">
+            Every review below is from a real KN Builders client on Google. Read them all on our profile, or share your own experience.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid gap-6 lg:mt-14 lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)] lg:gap-8">
+          {/* Score panel */}
+          <Reveal as="aside" className="relative overflow-hidden rounded-3xl bg-navy p-7 text-cream dot-grid sm:p-9">
+            <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-orange/25 blur-3xl" aria-hidden />
+            <div className="relative">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/60">Google rating</p>
+              <div className="mt-4 flex items-end gap-4">
+                <span className="font-display text-7xl font-extrabold leading-none text-white">{Number(rating).toFixed(1)}</span>
+                <div className="pb-2">
+                  <Stars value={rating} className="h-5 w-5" />
+                  <p className="mt-1.5 text-sm text-cream/70">{total} reviews</p>
+                </div>
+              </div>
+
+              <ul className="mt-7 space-y-2" aria-label="Rating breakdown">
+                {[5, 4, 3, 2, 1].map((n) => {
+                  const c = distribution[n] || 0
+                  const pct = total ? Math.round((c / total) * 100) : 0
+                  return (
+                    <li key={n} className="flex items-center gap-3 text-xs text-cream/70">
+                      <span className="w-3 text-right font-semibold">{n}</span>
+                      <Icon name="star" className="h-3 w-3 text-[#fbbc04]" />
+                      <span className="h-2 flex-1 overflow-hidden rounded-full bg-white/10">
+                        <span className="block h-full rounded-full bg-gradient-to-r from-orange to-[#fbbc04]" style={{ width: `${pct}%` }} />
+                      </span>
+                      <span className="w-6 text-right tabular-nums">{c}</span>
+                    </li>
+                  )
+                })}
+              </ul>
+
+              {highlights.length > 0 && (
+                <div className="mt-7">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/60">Clients mention</p>
+                  <ul className="mt-3 flex flex-wrap gap-2">
+                    {highlights.map((h) => (
+                      <li key={h} className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-cream/85">{h}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col">
+                <a href={writeUrl} {...ext} className="btn-primary justify-center">
+                  <Icon name="star" className="h-4 w-4" /> Write a Review
+                </a>
+                <a href={profileUrl} {...ext} className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-navy">
+                  Read All {total} Reviews <Icon name="arrow" className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Reviews */}
+          {featured && (
+            <div className="grid gap-6 md:grid-cols-2">
+              <Reveal className="md:col-span-2" delay={80}><ReviewCard r={featured} i={0} featured /></Reveal>
+              {rest.map((r, i) => (
+                <Reveal key={`${r.name}-${i}`} delay={160 + i * 80}><ReviewCard r={r} i={i + 1} /></Reveal>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </section>
   )
 }

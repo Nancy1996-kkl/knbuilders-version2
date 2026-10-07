@@ -1,7 +1,7 @@
 import { CtaBand } from '../components/common.jsx'
 import {
   Hero, TrustBar, AboutSection, ServicesSection, ProcessSection, ProjectsShowcase,
-  WhyChooseSection, TestimonialsSection, BlogSection, ServiceAreas, FaqSection,
+  WhyChooseSection, TestimonialsSection, GoogleReviewsSection, BlogSection, ServiceAreas, FaqSection,
 } from '../components/sections.jsx'
 import { faqsFor } from '../data.js'
 
@@ -17,6 +17,7 @@ export default function Home() {
       <WhyChooseSection />
       <ServiceAreas />
       <TestimonialsSection />
+      <GoogleReviewsSection />
       <BlogSection limit={3} />
       <FaqSection items={faqsFor('home')} bg="bg-cream-deep" />
       <CtaBand />

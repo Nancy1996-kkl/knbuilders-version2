@@ -30,7 +30,7 @@ const BUSINESS_PHONE = '+91 824 847 4364';
 const PHONE_LINK = 'tel:+918248474364';
 const WHATSAPP_LINK = 'https://wa.me/918248474364';
 const WEBSITE_URL = 'https://www.knbuilders.com';
-const ADDRESS = 'No. 1390, Royappa Nagar, Varadharajapuram, Chennai, Tamil Nadu 600048';
+const ADDRESS = '1390, Royappa Nagar, Varadharajapuram, Chennai, Tamil Nadu 600048';
 const HOURS = 'Mon – Fri 9:00 – 18:00 · Sat 10:00 – 15:00';
 
 /* Website brand colours (tailwind.config.js) */
