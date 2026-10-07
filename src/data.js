@@ -231,6 +231,28 @@ export const TESTIMONIALS = [
   { rating: '5.0', title: 'Quality You Can See', text: 'From the foundation to the finishing, the workmanship is excellent. Five years on, not a single complaint. Highly recommended.', name: 'Mohan Raj', role: 'Homeowner, Selaiyur', img: 'client4' },
 ]
 
+// Google reviews section (home page). Everything here is copied from the
+// Google Business Profile "KN Architects & Builders" — never invent reviews.
+// Update rating/total/distribution when Google changes, and add new reviews
+// to the top of `reviews` (name, stars and text exactly as on Google).
+//   writeReviewUrl — Business Profile → "Ask for reviews" → copy link
+//                    (g.page/r/…/review). Empty = opens the Google profile.
+const GOOGLE_CID = '12284291298939955326'
+export const GOOGLE_REVIEWS = {
+  profileUrl: `https://www.google.com/maps?cid=${GOOGLE_CID}`,
+  writeReviewUrl: '',
+  rating: 5.0, // as on Google, Oct 2026
+  total: 21,
+  distribution: { 5: 21, 4: 0, 3: 0, 2: 0, 1: 0 },
+  // "Refine reviews" topics Google shows for the profile
+  highlights: ['House building', 'Trustworthy team', 'Patient team', 'Design', 'Material quality', 'Easy communication'],
+  reviews: [
+    { name: 'Jeya Prakash G Prakash', rating: 5, date: 'Aug 2026', text: "We moved into our new home last week and it still feels unreal. KN Architects & Builders did a wonderful job. The finish is neat and they kept every promise they made. Thank you for giving our family a home we'll always love." },
+    { name: 'Ponmanikandan C', rating: 5, date: 'Jan 2026', text: 'KN Architects & Builders made my dream home come true. They were patient in answering all my doubts and changes. The finishing work and structure quality are impressive. A trustworthy construction company in Mudichur for sure.' },
+    { name: 'Purushoth A', rating: 5, date: 'Jan 2026', text: 'KN Architects & Builders did an excellent job for our house construction. The project was completed on time without unnecessary delays. They kept us updated at every stage and used good materials. One of the most reliable construction companies in Mudichur I have seen.' },
+  ],
+}
+
 // Blog cards come straight from the full articles (src/content/posts.js), newest first,
 // so titles, excerpts and reading times can never drift from the article pages.
 export const BLOGS = POSTS_BY_DATE.map(({ slug, tag, date, readTime, title, img, excerpt }) => (
